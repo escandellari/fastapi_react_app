@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import api from "./api";
+// import TransactionForm from "./components/TransactionForm";
 import NavigationMenu from "./components/NavigationMenu";
-import Table from "./components/Table";
+// import Table from "./components/Table";
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
@@ -120,8 +121,31 @@ const App = () => {
             Submit
           </button>
         </form>
+        {/* <TransactionForm /> */}
         <br />
-        <Table />
+        {/* <Table /> */}
+        <table className="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Income?</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map((transaction) => (
+              <tr key={transaction.id}>
+                <td>{transaction.amount}</td>
+                <td>{transaction.category}</td>
+                <td>{transaction.description}</td>
+                <td>{transaction.is_income ? "Yes" : "No"}</td>
+                <td>{transaction.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
